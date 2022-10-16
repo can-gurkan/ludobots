@@ -1,7 +1,7 @@
 import numpy
 
 simLength = 1000
-sleepTime = 1./500
+sleepTime = 1./5000
 gravityConst = -9.8
 
 amplitudeBL = numpy.pi/4
