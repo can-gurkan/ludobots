@@ -1,7 +1,7 @@
 import numpy
 
 simLength = 1000
-sleepTime = 1./50000
+sleepTime = 1./10000
 gravityConst = -9.8
 
 amplitudeBL = numpy.pi/4
@@ -15,3 +15,4 @@ phaseOffsetFL = numpy.pi/4
 maxForceFL = 15
 
 numberOfGenerations = 15
+populationSize = 10
