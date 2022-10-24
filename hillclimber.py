@@ -36,4 +36,3 @@ class HILL_CLIMBER:
         print('pf=',self.parent.fitness)
         self.parent.Create_Brain()
         self.parent.Evaluate('GUI')
-        
