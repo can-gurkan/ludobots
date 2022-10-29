@@ -1,6 +1,5 @@
 import pybullet as p
 import pybullet_data
-import pyrosim.pyrosim as pyrosim
 import time
 import constants as c
 from world import WORLD
@@ -26,7 +25,6 @@ class SIMULATION:
             self.robot.Act(i)
             if self.directOrGUI == "GUI":
                 time.sleep(c.sleepTime)
-            #print(i)
 
     def __del__(self):
         p.disconnect()

@@ -23,13 +23,13 @@ class PARALLEL_HILL_CLIMBER:
     def Evolve(self):
         self.Evaluate(self.parents)
         for currentGeneration in range(c.numberOfGenerations):
-            self.Evolve_For_One_Generation()
+            self.Evolve_For_One_Generation(currentGeneration)
 
-    def Evolve_For_One_Generation(self):
+    def Evolve_For_One_Generation(self,currGen):
         self.Spawn()
         self.Mutate()
         self.Evaluate(self.children)
-        self.Print()
+        self.Print(currGen)
         self.Select()
 
     def Spawn(self):
@@ -55,8 +55,7 @@ class PARALLEL_HILL_CLIMBER:
         bestSol.Create_Brain()
         bestSol.Start_Simulation('GUI')
 
-    def Print(self):
-        print()
-        print([p.fitness for p in self.parents.values()])
-        print([c.fitness for c in self.children.values()])
+    def Print(self,currGen):
+        print("Generation: " + str(currGen))
+        print("Best Fitness: "+str(max([p.fitness for p in self.parents.values()])))
         print()

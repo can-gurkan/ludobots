@@ -1,10 +1,10 @@
 import os
 import pybullet as p
+import constants as c
 import pyrosim.pyrosim as pyrosim
 from sensor import SENSOR
 from motor import MOTOR
 from pyrosim.neuralNetwork import NEURAL_NETWORK
-
 
 class ROBOT:
     def __init__(self,solutionID):
@@ -34,19 +34,20 @@ class ROBOT:
         for neuronName in self.nn.Get_Neuron_Names():
             if self.nn.Is_Motor_Neuron(neuronName):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-                desiredAngle = self.nn.Get_Value_Of(neuronName)
+                desiredAngle = self.nn.Get_Value_Of(neuronName)*c.motorJointRange
                 self.motors[jointName].Set_Value(desiredAngle, self.robotId)
-                #print(neuronName,jointName,desiredAngle)
 
     def Think(self):
         self.nn.Update()
-        #self.nn.Print()
 
     def Get_Fitness(self):
-        stateOfLinkZero = p.getLinkState(self.robotId, 0)
-        positionOfLinkZero = stateOfLinkZero[0]
-        xCoordinateOfLinkZero = positionOfLinkZero[0]
+        #stateOfLinkZero = p.getLinkState(self.robotId, 0)
+        #positionOfLinkZero = stateOfLinkZero[0]
+        #xCoordinateOfLinkZero = positionOfLinkZero[0]
+        basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+        basePosition = basePositionAndOrientation[0]
+        xPosition = basePosition[0]
         f = open("tmp" + str(self.solutionID) + ".txt", "w")
-        f.write(str(xCoordinateOfLinkZero))
+        f.write(str(xPosition))
         os.system("mv " + "tmp" + str(self.solutionID) + ".txt " + "fitness" + str(self.solutionID) + ".txt")
         f.close()

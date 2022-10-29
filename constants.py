@@ -1,18 +1,12 @@
-import numpy
-
 simLength = 1000
 sleepTime = 1./10000
 gravityConst = -9.8
 
-amplitudeBL = numpy.pi/4
-frequencyBL = 20
-phaseOffsetBL = 0
-maxForceBL = 15
+maxForce = 100
+motorJointRange = 0.4
 
-amplitudeFL = numpy.pi/4
-frequencyFL = 20
-phaseOffsetFL = numpy.pi/4
-maxForceFL = 15
+numberOfGenerations = 50
+populationSize = 20
 
-numberOfGenerations = 15
-populationSize = 10
+numSensorNeurons = 9
+numMotorNeurons = 8
